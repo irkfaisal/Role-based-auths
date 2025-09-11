@@ -1,192 +1,192 @@
-# Role-based-auths
-🔐 Auth App — Role & Permission Based Access Control
+# Auth App – Role-Based Access Control (RBAC) System
 
-This project is a full-stack role-based authentication and authorization system built with:
+This project is a **Role-Based Authentication and Authorization System** built with **MERN stack** (MongoDB/PostgreSQL with Prisma, Express.js, React.js, Node.js, Vite).  
+It enables **Super Admins** to manage users, roles, pages, and franchisees with full permission control.
 
-Frontend → React (Vite) + React Router + Normal CSS
+---
 
-Backend → Node.js (Express), Prisma ORM, PostgreSQL
+## 🚀 Features
 
-Database → PostgreSQL
+### 🔐 Authentication
+- User **register** (only by Super Admin)
+- User **login** with JWT token
+- Token-based authentication (stored in localStorage)
 
-It allows different users (Super Admin, Admin, Employee, etc.) to log in, access pages based on their role & permissions, and manage Users, Roles, Permissions, and Franchisees.
+### 👥 User Management
+- Super Admin can:
+  - Add new users
+  - View all users
+  - Delete users
+  - Activate/Deactivate users
+- Users are linked to roles & franchisees
 
-📌 Features
-🔹 Authentication
+### 📜 Role Management
+- Super Admin can:
+  - Create roles (Admin, Manager, Employee, Director, SuperAdmin, etc.)
+  - Edit/Delete roles
+  - Assign roles to users dynamically
 
-Login with JWT-based authentication.
+### 📄 Page Management
+- Super Admin can:
+  - Create, update, and delete pages
+  - Assign permissions to roles for specific pages
+- Sidebar in React automatically shows only **authorized pages**
 
-Super Admin can add users (regular users cannot register themselves).
+### 🏢 Franchisee Management
+- Super Admin can:
+  - Add multiple franchisees
+  - Assign users to one or more franchisees
+- Franchisees include:
+  - Traffic NZ
+  - Refresh NZ
+  - Refresh International
+  - Refresh AU
+  - Refresh UK
+  - Refresh US
+  - Zones NZ
+  - Zones AU
+  - Zones International
+  - Oncore NZ
+  - Oncore International
+  - Techverse Origin
+  - We Sort It
 
-Token-based session handling.
+---
 
-🔹 Authorization
+## 🛠 Tech Stack
 
-Role-based access:
+### Backend
+- **Node.js + Express**
+- **Prisma ORM**
+- **PostgreSQL**
+- JWT Authentication
+- Middleware-based Role/Permission checks
 
-Super Admin can manage everything.
+### Frontend
+- **React.js (Vite)**
+- **React Router DOM**
+- **Normal CSS** (no heavy framework)
+- Component-based architecture
+- API calls separated into `services/`
 
-Admin can manage users (add, delete, activate/deactivate).
+---
 
-Employees and other roles only see pages allowed to them.
+## 📂 Project Structure
 
-Permission-based access:
-
-Assign pages dynamically to roles or users.
-
-Users only see sidebar links for pages they have permission for.
-
-🔹 User Management
-
-Add users (by Super Admin / Admin only).
-
-View all users.
-
-Delete or deactivate users.
-
-Assign roles and franchisees to users.
-
-🔹 Role Management
-
-Create, edit, delete roles dynamically.
-
-Assign permissions (pages) to roles.
-
-🔹 Page Management
-
-Create pages dynamically from backend.
-
-Assign pages to roles/users as permissions.
-
-Sidebar auto-updates with assigned pages.
-
-🔹 Franchisee Management
-
-Create and manage franchisees.
-
-Associate users with one or multiple franchisees.
-
-🛠 Tech Stack
-Client (Frontend)
-
-React + Vite — fast and modern frontend framework.
-
-React Router — client-side routing.
-
-Normal CSS — clean component-based styling.
-
-Server (Backend)
-
-Express.js — RESTful API framework.
-
-Prisma ORM — type-safe database access.
-
-PostgreSQL — relational database.
-
-JWT (jsonwebtoken) — authentication middleware.
-
-📂 Project Structure
-Frontend
-client/
- ├── src/
- │   ├── components/     # Reusable UI components (forms, tables, etc.)
- │   ├── pages/          # Page-level components (Login, AddUser, AddRole, etc.)
- │   ├── api/            # API service layer (authApi.js, userApi.js, roleApi.js)
- │   ├── styles/         # CSS files for pages/components
- │   ├── utils/          # Helper functions (auth.js, token handling)
- │   └── App.jsx         # Main routing and layout
-
-Backend
+### Backend (`/server`)
 server/
- ├── prisma/
- │   ├── schema.prisma   # Prisma schema (models: User, Role, Page, Permission, Franchisee)
- │   └── seed.js         # Seeding database with initial data
- ├── controllers/        # Business logic (authController, roleController, etc.)
- ├── routes/             # Express route definitions
- ├── middleware/         # JWT & role-based middleware
- ├── index.js            # Express app entry point
- └── .env                # Environment variables (DB_URL, JWT_SECRET, etc.)
-
-🚀 Setup Instructions
-1. Clone Repository
-git clone https://github.com/your-username/auth_app.git
-cd auth_app
-
-2. Backend Setup
-cd server
-npm install
-
-
-Set up .env file:
-
-DATABASE_URL="postgresql://user:password@localhost:51214/auth_app"
-JWT_SECRET="yoursecretkey"
+┣ prisma/
+┃ ┣ schema.prisma
+┃ ┣ seed.js
+┣ routes/
+┃ ┣ authRoutes.js
+┃ ┣ userRoutes.js
+┃ ┣ roleRoutes.js
+┃ ┣ pageRoutes.js
+┃ ┣ franchiseeRoutes.js
+┣ controllers/
+┃ ┣ authController.js
+┃ ┣ userController.js
+┃ ┣ roleController.js
+┃ ┣ pageController.js
+┃ ┣ franchiseeController.js
+┣ middlewares/
+┃ ┣ authMiddleware.js
+┃ ┣ roleMiddleware.js
+┣ utils/
+┃ ┣ jwt.js
+┣ index.js
 
 
-Run Prisma migrations & seed:
+### Frontend (`/client`)
 
-npx prisma migrate dev --name init
+client/
+┣ src/
+┃ ┣ components/
+┃ ┃ ┣ Header.jsx
+┃ ┃ ┣ Sidebar.jsx
+┃ ┃ ┣ Content.jsx
+┃ ┣ pages/
+┃ ┃ ┣ LoginPage.jsx
+┃ ┃ ┣ HomePage.jsx
+┃ ┃ ┣ AdminPage.jsx
+┃ ┃ ┣ AddUserPage.jsx
+┃ ┃ ┣ AddRolePage.jsx
+┃ ┃ ┣ AddFranchiseePage.jsx
+┃ ┣ services/
+┃ ┃ ┣ api.js
+┃ ┃ ┣ userService.js
+┃ ┃ ┣ roleService.js
+┃ ┃ ┣ franchiseeService.js
+┃ ┣ utils/
+┃ ┃ ┣ auth.js
+┃ ┣ App.jsx
+┃ ┣ main.jsx
+
+
+---
+
+## 📊 Database Schema
+
+The system contains the following models:
+
+- **User**
+  - `id`, `name`, `email`, `password`, `roleId`, `franchisees[]`, `permissions[]`
+- **Role**
+  - `id`, `name`, `users[]`
+- **Page**
+  - `id`, `name`, `path`, `isActive`, `permissions[]`
+- **Permission**
+  - `id`, `roleId`, `pageId`, `canView`, `canEdit`, `canDelete`
+- **Franchisee**
+  - `id`, `name`, `users[]`
+
+📄 Full ERD Diagram:  
+![ERD Diagram](./auth_app_erd.png)
+
+---
+
+## 🔑 API Endpoints
+
+### Auth
+- `POST /api/register` → Create new user (only Super Admin)
+- `POST /api/login` → Login user and get token
+
+### Users
+- `GET /api/users` → Get all users (Admin only)
+- `DELETE /api/users/:id` → Delete user (Admin only)
+- `PATCH /api/users/:id/activate` → Activate user (Admin only)
+- `PATCH /api/users/:id/deactivate` → Deactivate user (Admin only)
+
+### Roles
+- `POST /api/roles` → Create role
+- `GET /api/roles` → Get all roles
+- `PATCH /api/roles/:id` → Update role
+- `DELETE /api/roles/:id` → Delete role
+
+### Pages
+- `POST /api/pages` → Create page
+- `GET /api/pages` → Get all pages
+- `PATCH /api/pages/:id` → Update page
+- `DELETE /api/pages/:id` → Delete page
+
+### Franchisees
+- `POST /api/franchisees` → Create franchisee
+- `GET /api/franchisees` → Get all franchisees
+- (Future: Assign users to franchisees)
+
+---
+
+## ⚡ Setup Instructions
+
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/yourusername/auth_app.git
+
+2. cd server && npm install
+cd ../client && npm install
+3. cd server
+npx prisma migrate dev
 node prisma/seed.js
 
-
-Start server:
-
-npm run dev
-
-3. Frontend Setup
-cd client
-npm install
-npm run dev
-
-📡 API Endpoints
-Auth
-
-POST /api/auth/login → Login
-
-POST /api/auth/register → Add user (Super Admin only)
-
-Users
-
-GET /api/users → Get all users (Admin only)
-
-DELETE /api/users/:id → Delete user (Admin only)
-
-PATCH /api/users/:id/status → Activate/Deactivate user
-
-Roles
-
-POST /api/roles → Create role
-
-GET /api/roles → Get all roles
-
-PUT /api/roles/:id → Update role
-
-DELETE /api/roles/:id → Delete role
-
-Pages
-
-POST /api/pages → Create page
-
-GET /api/pages → Get all pages
-
-Permissions
-
-GET /api/permissions/user/:id → Get user permissions
-
-POST /api/permissions/user/:id → Update user permissions
-
-Franchisee
-
-POST /api/franchisee → Create franchisee
-
-GET /api/franchisee → Get all franchisees
-
-✅ Future Improvements
-
-Add refresh token mechanism.
-
-Add UI for permissions management.
-
-Role-based dashboard layouts.
-
-Logging & audit trail for user activities.
+4.npm run dev
