@@ -1,0 +1,251 @@
+.table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.table-header h2 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.add-user-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-user-btn:hover {
+    background: #2563eb;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th {
+    background: #f9fafb;
+    padding: 16px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+.users-table td {
+    padding: 16px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.users-table tr:hover {
+    background: #f9fafb;
+}
+
+.user-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #3b82f6;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.role-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.role-admin {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.role-manager {
+    background: #f0f9ff;
+    color: #0284c7;
+}
+
+.role-user {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.permissions,
+.franchisees {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.permission-tag,
+.franchise-tag {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.permission-tag {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.franchise-tag {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #10b981;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.update-btn,
+.delete-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.update-btn {
+    background: #f0f9ff;
+    color: #0284c7;
+}
+
+.update-btn:hover {
+    background: #0284c7;
+    color: white;
+}
+
+.delete-btn {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .table-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .table-header h2 {
+        text-align: center;
+    }
+
+    .users-table {
+        font-size: 14px;
+    }
+
+    .users-table th,
+    .users-table td {
+        padding: 12px 8px;
+    }
+
+    .user-name {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .permissions,
+    .franchisees {
+        justify-content: center;
+    }
+}

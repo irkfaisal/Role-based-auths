@@ -1,0 +1,44 @@
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+const prisma = new PrismaClient();
+
+export const register = async (req, res) => {
+    const { name, email, password, roleId } = req.body;
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const user = await prisma.user.create({
+            data: { name, email, password: hashedPassword, roleId },
+        });
+
+        const token = jwt.sign({ id: user.id, email: user.email }, 'secret_key');
+        res.status(201).json({ token, user });
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
+export const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await prisma.user.findUnique({ where: { email } });
+        if (!user) return res.status(404).json({ message: 'Invalid email or password' });
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(401).json({ error: 'Invalid email or password' });
+
+        const token = jwt.sign(
+            { id: user.id, email: user.email, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: '1d' }
+        );
+
+        res.json({ token, user });
+    } catch (err) {
+        res.status(500).json({ message: 'Login failed', error: err.message });
+    }
+};

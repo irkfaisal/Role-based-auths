@@ -1,0 +1,66 @@
+.add-user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-user-table thead {
+    background: #2c3e50;
+    color: white;
+}
+
+.add-user-table th,
+.add-user-table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+.add-user-table tbody tr:hover {
+    background: #f5f5f5;
+}
+
+.add-user-table td.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.add-user-table button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-user-table button.edit {
+    background: #3498db;
+    color: white;
+}
+
+.add-user-table button.edit:hover {
+    background: #2980b9;
+}
+
+.add-user-table button.delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.add-user-table button.delete:hover {
+    background: #c0392b;
+}
+
+.add-user-table button.deactivate {
+    background: #f39c12;
+    color: white;
+}
+
+.add-user-table button.deactivate:hover {
+    background: #d68910;
+}
