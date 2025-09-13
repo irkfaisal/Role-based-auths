@@ -7,6 +7,7 @@ import Content from './components/Content';
 import AdminDashboard from './layouts/AdminDashboard/AdminDashboard.jsx';
 import AddUserPage from './pages/AdminDashboard/UserCard/AddUserPage.jsx';
 import AddRolePage from './pages/AdminDashboard/RoleCard/AddRolePage.jsx';
+import AddPage from './pages/AdminDashboard/PageCard/AddPage.jsx';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             {/* add more pages here */}
             <Route path='user' element={<AddUserPage />} />
             <Route path='role' element={<AddRolePage />} />
+            <Route path='page' element={<AddPage />} />
           </Route>
         </Route>
       </Routes>
