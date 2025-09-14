@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "./styles/AddUserForm.css"
 
-const AddUserForm = ({ onAddUser }) => {
+const AddUserForm = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -17,13 +17,15 @@ const AddUserForm = ({ onAddUser }) => {
     const [franchiseeInput, setFranchiseeInput] = useState("")
 
     const availableRoles = [
-        { id: 1, name: "Admin" },
-        { id: 2, name: "Manager" },
-        { id: 3, name: "User" },
+        { id: 5, name: 'director' },
+        { id: 6, name: 'admin' },
+        { id: 7, name: 'superAdmin' },
+        { id: 8, name: 'employee' },
+        { id: 9, name: 'manager' }
     ]
 
-    const availablePermissions = ["Read", "Write", "Delete", "Update", "Create"]
-    const availableFranchisees = ["Franchise A", "Franchise B", "Franchise C", "Franchise D"]
+    const availablePermissions = ["Dashboard", "Projects", "Reports", "Management", "Billing", "admin"]
+    const availableFranchisees = ['Oncore NZ', 'PlanFirst', 'Techverse Origin', 'We Sort It', 'Oncore International', 'Refresh NZ', 'Refresh AU', 'Refresh US', 'Refresh UK', 'Zones NZ', 'Zones AU']
 
     const handleInputChange = (e) => {
         const { name, value, type } = e.target
@@ -76,9 +78,9 @@ const AddUserForm = ({ onAddUser }) => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        console.log(formData)
         if (formData.name && formData.email && formData.password) {
-            onAddUser(formData)
             // Reset form
             setFormData({
                 name: "",
@@ -191,7 +193,7 @@ const AddUserForm = ({ onAddUser }) => {
                     <div className="tags-input">
                         <div className="tags-container">
                             {formData.franchisees.map((franchisee, index) => (
-                                <span key={index} className="tag franchise-tag">
+                                <span key={index + 1} className="tag franchise-tag">
                                     {franchisee}
                                     <button type="button" onClick={() => removeFranchisee(franchisee)}>
                                         ×
@@ -200,9 +202,9 @@ const AddUserForm = ({ onAddUser }) => {
                             ))}
                         </div>
                         <div className="add-tags">
-                            {availableFranchisees.map((franchisee) => (
+                            {availableFranchisees.map((franchisee, index) => (
                                 <button
-                                    key={franchisee}
+                                    key={index + 1}
                                     type="button"
                                     className={`tag-btn ${formData.franchisees.includes(franchisee) ? "disabled" : ""}`}
                                     onClick={() => addFranchisee(franchisee)}

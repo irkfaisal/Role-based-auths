@@ -1,71 +1,83 @@
 .add-user-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    gap: 12px;
+    background: #fafafa;
+    padding: 16px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
 }
 
 /* Form Row */
 .add-user-form .form-group {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .add-user-form label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #34495e;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
 }
 
 .add-user-form input,
 .add-user-form select {
-    padding: 10px;
+    padding: 8px 10px;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.2s;
+    border-radius: 4px;
+    font-size: 13px;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .add-user-form input:focus,
 .add-user-form select:focus {
     outline: none;
-    border-color: #1abc9c;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
 /* Buttons */
 .add-user-form .form-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .add-user-form button {
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.2s, border-color 0.2s, transform 0.1s;
 }
 
+.add-user-form button:active {
+    transform: scale(0.97);
+}
+
+/* Submit button */
 .add-user-form button.submit {
-    background: #1abc9c;
+    background: #3498db;
+    border-color: #2980b9;
     color: white;
 }
 
 .add-user-form button.submit:hover {
-    background: #16a085;
+    background: #2980b9;
 }
 
+/* Cancel button */
 .add-user-form button.cancel {
-    background: #e74c3c;
-    color: white;
+    background: #f5f5f5;
+    border-color: #dcdcdc;
+    color: #333;
 }
 
 .add-user-form button.cancel:hover {
-    background: #c0392b;
+    background: #e0e0e0;
 }
