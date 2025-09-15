@@ -1,8 +1,12 @@
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+
 // controller/user.controller.ts
 export const getAllUsers = async (req, res) => {
     const currentUser = req.user;
+    console.log("currentUser", currentUser)
 
-    if (currentUser.role !== 'ADMIN') {
+    if (currentUser.role.name !== 'superAdmin') {
         return res.status(403).json({ message: 'Access denied' });
     }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/authLogin';
-import { saveToken } from '../utils/auth';
+import { saveToken, saveUserData } from '../utils/auth';
 
 const useLogin = () => {
     const [loading, setLoading] = useState(false)
@@ -18,6 +18,7 @@ const useLogin = () => {
             if (data) {
                 saveToken(data.token)
                 setUserData(data)
+                saveUserData(data?.userData)
                 navigate('/')
             }
 

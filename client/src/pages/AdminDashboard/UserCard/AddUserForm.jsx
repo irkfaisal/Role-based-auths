@@ -1,11 +1,12 @@
 import { useState } from "react"
 import "./styles/AddUserForm.css"
+import { addUser } from "../../../services/userApi"
 
 const AddUserForm = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        roleId: 1,
+        roleId: '8',
         role: "User",
         password: "",
         permissions: [],
@@ -77,11 +78,17 @@ const AddUserForm = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData)
+        try {
+            const resp = await addUser(formData)
+            if (resp) {
+                alert("User added successfully!");
+            }
+        } catch (error) {
+            alert("Failed to add user: " + error.message);
+        }
         if (formData.name && formData.email && formData.password) {
-            // Reset form
             setFormData({
                 name: "",
                 email: "",
@@ -126,6 +133,7 @@ const AddUserForm = () => {
                             id="email"
                             name="email"
                             value={formData.email}
+                            // autoComplete=""
                             onChange={handleInputChange}
                             required
                             placeholder="Enter email address"

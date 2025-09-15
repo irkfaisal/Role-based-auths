@@ -5,13 +5,31 @@ import jwt from 'jsonwebtoken';
 const prisma = new PrismaClient();
 
 export const register = async (req, res) => {
-    const { name, email, password, roleId } = req.body;
+    const { name, email, password, roleId, permissions, franchisees, isActive } = req.body;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = await prisma.user.create({
-            data: { name, email, password: hashedPassword, roleId },
+            data: {
+                name, email, password: hashedPassword,
+                // roleId,
+                role: { connect: { id: roleId } },
+                permissions: {
+                    create: permissions.map(p => ({
+                        page: { connect: { name: p } },
+                        canView: true
+                    }))
+                },
+                franchisees: {
+                    connect: franchisees.map(f => ({ name: f }))
+                },
+            },
+            include: {
+                role: true,
+                franchisees: true,
+                permissions: { include: { page: true } } // include related page for each permission
+            }
         });
 
         const token = jwt.sign({ id: user.id, email: user.email }, 'secret_key');
@@ -25,11 +43,24 @@ export const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await prisma.user.findUnique({ where: { email } });
+        const user = await prisma.user.findUnique({
+            where: { email },
+            include: {
+                role: true,
+                franchisees: true,
+                permissions: {
+                    include: { page: true }
+                }
+            }
+
+        });
         if (!user) return res.status(404).json({ message: 'Invalid email or password' });
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(401).json({ error: 'Invalid email or password' });
+
+        // remove password before sending
+        const { password: _, ...userData } = user;
 
         const token = jwt.sign(
             { id: user.id, email: user.email, role: user.role },
@@ -37,7 +68,7 @@ export const loginUser = async (req, res) => {
             { expiresIn: '1d' }
         );
 
-        res.json({ token, user });
+        res.json({ token, userData });
     } catch (err) {
         res.status(500).json({ message: 'Login failed', error: err.message });
     }

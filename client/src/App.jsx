@@ -10,7 +10,6 @@ import AddRolePage from './pages/AdminDashboard/RoleCard/AddRolePage.jsx';
 import AddPage from './pages/AdminDashboard/PageCard/AddPage.jsx';
 
 function App() {
-
   return (
     <Router>
       <Routes>

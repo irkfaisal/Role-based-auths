@@ -8,4 +8,9 @@ export const getToken = () => {
 
 export const logout = () => {
     localStorage.removeItem('token');
+    alert("Logout done")
 };
+
+export const saveUserData = (userData) => {
+    localStorage.setItem('userData', JSON.stringify(userData))
+}
