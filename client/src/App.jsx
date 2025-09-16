@@ -24,6 +24,7 @@ function App() {
             <Route path='user' element={<AddUserPage />} />
             <Route path='role' element={<AddRolePage />} />
             <Route path='page' element={<AddPage />} />
+            <Route path='franchisee' element={<AddPage />} />
           </Route>
         </Route>
       </Routes>

@@ -4,17 +4,26 @@ const prisma = new PrismaClient();
 // controller/user.controller.ts
 export const getAllUsers = async (req, res) => {
     const currentUser = req.user;
-    console.log("currentUser", currentUser)
 
     if (currentUser.role.name !== 'superAdmin') {
         return res.status(403).json({ message: 'Access denied' });
     }
 
     const users = await prisma.user.findMany({
-        include: {
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            isActive: true,
             role: true,
             franchisees: true,
-            permissions: true,
+            permissions: {
+                select: {
+                    page: true, // ✅ this pulls in name, path, isActive, etc from page schema.
+                    canView: true,
+                    id: true,
+                },
+            },
         },
     });
 
@@ -25,7 +34,7 @@ export const getAllUsers = async (req, res) => {
 export const deleteUser = async (req, res) => {
     const currentUser = req.user;
 
-    if (currentUser.role !== 'ADMIN') {
+    if (currentUser.role.name !== 'superAdmin') {
         return res.status(403).json({ message: 'Access denied' });
     }
 
@@ -43,7 +52,7 @@ export const deleteUser = async (req, res) => {
 export const toggleUserStatus = async (req, res) => {
     const currentUser = req.user;
 
-    if (currentUser.role !== 'ADMIN') {
+    if (currentUser.role.name !== 'superAdmin') {
         return res.status(403).json({ message: 'Access denied' });
     }
 
@@ -53,7 +62,7 @@ export const toggleUserStatus = async (req, res) => {
     try {
         const updatedUser = await prisma.user.update({
             where: { id: userId },
-            data: { isActive },
+            data: { isActive: !isActive },
         });
 
         return res.json({ message: `User ${isActive ? 'activated' : 'deactivated'} successfully`, user: updatedUser });

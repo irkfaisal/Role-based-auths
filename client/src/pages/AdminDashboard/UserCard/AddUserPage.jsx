@@ -1,22 +1,20 @@
 
+import useGetAllUser from "../../../hooks/useGetAllUser";
+import Table from "../../../layouts/AdminDashboard/components/Table"
 import AddUserForm from "./AddUserForm"
-import AllUsersTable from "./AllUserTable"
 import "./styles/AddUserPage.css"
 
-const AddUserPage = ({ users, onNavigateBack }) => {
+const AddUserPage = ({ onNavigateBack }) => {
+    const { users, setUsers, loading, error, handleToggleActive, handleUpdatePermissions, handleDeleteUser } = useGetAllUser();
+
+    if (loading) return <p>Loading users...</p>;
+    if (error) return <p>Error: {error}</p>;
+
     return (
         <div className="add-user-page">
-            <div className="page-header">
-                <button className="back-btn" onClick={onNavigateBack}>
-                    ←
-                </button>
-                <h1>Add New User</h1>
-                <p>Create a new user account and manage user details</p>
-            </div>
-
             <div className="page-content">
                 <AddUserForm />
-                <AllUsersTable users={users} />
+                <Table users={users} setUsers={setUsers} handleToggleActive={handleToggleActive} handleUpdatePermissions={handleUpdatePermissions} handleDeleteUser={handleDeleteUser} />
             </div>
         </div>
     )

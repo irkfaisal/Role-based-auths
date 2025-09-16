@@ -33,7 +33,8 @@ model User {
   role        Role?          @relation(fields: [roleId], references: [id])
   password    String? 
   permissions Permission[]  // Relation to permissions
-  franchisees  Franchisee[]  @relation("UserFranchisees")
+  franchisees Franchisee[]  @relation("UserFranchisees")
+  isActive    Boolean  @default(true)
 }
 
 model Page {

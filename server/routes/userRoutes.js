@@ -5,9 +5,9 @@ import { authorizeRole } from '../middleware/checkRole.js';
 
 const router = express.Router();
 
-router.get('/users', verifyToken, authorizeRole('superAdmin'), getAllUsers);
-router.delete('/users/:id', verifyToken, deleteUser);
-router.patch('/users/:id/status', verifyToken, toggleUserStatus);
+router.get('/', verifyToken, authorizeRole('superAdmin'), getAllUsers);
+router.delete('/delete/:id', verifyToken, authorizeRole('superAdmin'), deleteUser);
+router.patch('/status/:id', verifyToken, authorizeRole('superAdmin'), toggleUserStatus);
 
 
 export default router;

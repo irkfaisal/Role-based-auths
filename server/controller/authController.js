@@ -32,7 +32,7 @@ export const register = async (req, res) => {
             }
         });
 
-        const token = jwt.sign({ id: user.id, email: user.email }, 'secret_key');
+        const token = jwt.sign({ id: user.id, email: user.email, role: user.role, isActive: user.isActive }, 'secret_key');
         res.status(201).json({ token, user });
     } catch (err) {
         res.status(400).json({ error: err.message });
@@ -63,7 +63,7 @@ export const loginUser = async (req, res) => {
         const { password: _, ...userData } = user;
 
         const token = jwt.sign(
-            { id: user.id, email: user.email, role: user.role },
+            { id: user.id, email: user.email, role: user.role, isActive: user.isActive },
             process.env.JWT_SECRET,
             { expiresIn: '1d' }
         );
