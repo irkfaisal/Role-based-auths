@@ -4,7 +4,6 @@ import '../styles/Login.css'
 
 const LoginPage = () => {
   const { handleLogin, error, loading, userData } = useLogin();
-  console.log(userData)
   return (
     <div className="login-container">
       <div className="login-card">
