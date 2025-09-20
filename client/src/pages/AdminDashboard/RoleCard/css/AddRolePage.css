@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap");
+
+.role-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
+    padding: 2rem 1rem;
+    font-family: "DM Sans", sans-serif;
+}
+
+.role-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.role-header-content {
+    background: var(--card);
+    border-radius: calc(var(--radius) * 2);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+}
+
+.role-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.role-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--foreground);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.2;
+}
+
+.role-subtitle {
+    color: var(--muted);
+    font-size: 1.125rem;
+    margin: 0;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.role-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* grid-template-columns: 1fr 2fr; */
+    gap: 2rem;
+    /* align-items: start; */
+}
+
+.role-form-section {
+    position: sticky;
+    top: 2rem;
+}
+
+.role-table-section {
+    min-height: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .role-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .role-form-section {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .role-page {
+        padding: 1rem 0.5rem;
+    }
+
+    .role-header {
+        margin-bottom: 2rem;
+    }
+
+    .role-header-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .role-title {
+        font-size: 2rem;
+    }
+
+    .role-subtitle {
+        font-size: 1rem;
+    }
+
+    .role-container {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .role-page {
+        padding: 1rem 0.25rem;
+    }
+
+    .role-header-content {
+        padding: 1.5rem 1rem;
+        margin: 0 0.5rem;
+    }
+
+    .role-title {
+        font-size: 1.75rem;
+    }
+
+    .role-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .role-page {
+        background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
+    }
+}

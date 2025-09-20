@@ -4,8 +4,15 @@ import "./css/AddRolePage.css";
 
 const AddRolePage = () => {
     return (
-        <div className="role-page">
-            <h2 className="role-title">Manage Roles</h2>
+        <main className="role-page">
+            <div className="role-header">
+                <div className="role-header-content">
+                    <div className="role-icon">👥</div>
+                    <h1 className="role-title">Manage Roles</h1>
+                    <p className="role-subtitle">Create and manage user roles for your application</p>
+                </div>
+            </div>
+
             <div className="role-container">
                 <div className="role-form-section">
                     <AddRoleForm />
@@ -14,7 +21,7 @@ const AddRolePage = () => {
                     <AddRoleTable />
                 </div>
             </div>
-        </div>
+        </main>
     );
 };
 

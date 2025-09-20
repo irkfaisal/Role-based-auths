@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap");
+
+.table-container {
+    padding: 2rem;
+    font-family: "DM Sans", sans-serif;
+    background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
+    min-height: 100vh;
+}
+
+.table-card {
+    background: var(--card);
+    border-radius: calc(var(--radius) * 2);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.table-header {
+    padding: 2rem 2rem 1rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.table-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.table-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--foreground);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.table-subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.roles-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "DM Sans", sans-serif;
+}
+
+.roles-table thead {
+    background: var(--muted-background);
+}
+
+.roles-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border);
+}
+
+.roles-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--foreground);
+    font-size: 0.95rem;
+}
+
+.roles-table tbody tr {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.roles-table tbody tr:hover {
+    background: var(--accent-background);
+}
+
+.id-cell {
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.name-cell {
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.action-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: "DM Sans", sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.edit-btn {
+    background: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.edit-btn:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.delete-btn {
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+}
+
+.delete-btn:hover {
+    background: var(--destructive-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(227, 52, 47, 0.2);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.empty-state {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 1rem;
+    }
+
+    .table-card {
+        margin: 0;
+    }
+
+    .table-header {
+        padding: 1.5rem 1rem 1rem 1rem;
+    }
+
+    .table-title {
+        font-size: 1.5rem;
+    }
+
+    .roles-table th,
+    .roles-table td {
+        padding: 0.75rem 1rem;
+    }
+
+    .actions-cell {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .roles-table th,
+    .roles-table td {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    .table-title {
+        font-size: 1.25rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .table-container {
+        background: linear-gradient(135deg, var(--background) 0%, var(--secondary) 100%);
+    }
+}
