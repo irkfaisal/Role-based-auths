@@ -40,11 +40,15 @@ export const deleteUser = async (req, res) => {
 
     const userId = Number(req.params.id);
 
+    const allUsers = await prisma.user.findMany();
+    console.log(allUsers.map(u => u.id));
+
     try {
         await prisma.user.delete({ where: { id: userId } });
         return res.json({ message: 'User deleted successfully' });
     } catch (err) {
-        return res.status(404).json({ message: 'User not found' });
+        console.error("Delete user error:", err);
+        return res.status(500).json({ message: 'Failed to delete user', error: err.message });
     }
 };
 

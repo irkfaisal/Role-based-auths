@@ -12,7 +12,8 @@ export const register = async (req, res) => {
 
         const user = await prisma.user.create({
             data: {
-                name, email, password: hashedPassword,
+                name, email,
+                password: hashedPassword,
                 // roleId,
                 role: { connect: { id: roleId } },
                 permissions: {
@@ -22,7 +23,7 @@ export const register = async (req, res) => {
                     }))
                 },
                 franchisees: {
-                    connect: franchisees.map(f => ({ name: f }))
+                    connect: franchisees?.map(f => ({ name: f }))
                 },
             },
             include: {
@@ -54,7 +55,7 @@ export const loginUser = async (req, res) => {
             }
 
         });
-        if (!user) return res.status(404).json({ message: 'Invalid email or password' });
+        if (!user) return res.status(404).json({ message: 'user not found' });
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(401).json({ error: 'Invalid email or password' });

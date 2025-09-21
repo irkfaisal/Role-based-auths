@@ -18,14 +18,14 @@ const AddUserForm = () => {
     const [franchiseeInput, setFranchiseeInput] = useState("")
 
     const availableRoles = [
-        { id: 5, name: 'director' },
-        { id: 6, name: 'admin' },
-        { id: 7, name: 'superAdmin' },
-        { id: 8, name: 'employee' },
-        { id: 9, name: 'manager' }
+        { id: 1, name: 'director' },
+        { id: 2, name: 'admin' },
+        { id: 3, name: 'superAdmin' },
+        { id: 4, name: 'employee' },
+        { id: 5, name: 'manager' }
     ]
 
-    const availablePermissions = ["Dashboard", "Projects", "Reports", "Management", "Billing", "admin"]
+    const availablePermissions = ["Dashboard", "Projects", "Reports", "Management", "Billing", "Admin"]
     const availableFranchisees = ['Oncore NZ', 'PlanFirst', 'Techverse Origin', 'We Sort It', 'Oncore International', 'Refresh NZ', 'Refresh AU', 'Refresh US', 'Refresh UK', 'Zones NZ', 'Zones AU']
 
     const handleInputChange = (e) => {

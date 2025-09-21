@@ -14,9 +14,10 @@ datasource db {
 }
 
 model Franchisee {
-  id    Int     @id @default(autoincrement())
-  name  String  @unique
-  users User[]  @relation("UserFranchisees")
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  userId Int?
+  user   User?   @relation("UserFranchisees", fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Role {
@@ -47,7 +48,7 @@ model Page {
 
 model Permission {
   id       Int     @id @default(autoincrement())
-  user     User    @relation(fields: [userId], references: [id])
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   Int
   page     Page    @relation(fields: [pageId], references: [id])
   pageId   Int
