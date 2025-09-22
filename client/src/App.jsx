@@ -10,8 +10,6 @@ import AddRolePage from './pages/AdminDashboard/RoleCard/AddRolePage.jsx';
 import AddPage from './pages/AdminDashboard/PageCard/AddPage.jsx';
 
 function App() {
-  const getUserData = localStorage.getItem('userData');
-  console.log("User Data in App.js:", getUserData);
   return (
     <Router>
       <Routes>

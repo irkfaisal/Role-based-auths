@@ -20,14 +20,14 @@ async function main() {
     // console.log('✅ Franchisees seeded.');
 
     // 2️⃣ Create Roles
-    // const roles = ['director', 'admin', 'superAdmin', 'employee', 'manager'];
-    // for (const roleName of roles) {
-    //     const existing = await prisma.role.findUnique({ where: { name: roleName } });
-    //     if (!existing) {
-    //         await prisma.role.create({ data: { name: roleName } });
-    //     }
-    // }
-    // console.log('✅ Roles seeded.');
+    const roles = ['Director', 'Admin', 'Super Admin', 'Employee', 'Manager'];
+    for (const roleName of roles) {
+        const existing = await prisma.role.findUnique({ where: { name: roleName } });
+        if (!existing) {
+            await prisma.role.create({ data: { name: roleName } });
+        }
+    }
+    console.log('✅ Roles seeded.');
 
     // 3️⃣ Create Pages
     // const pages = [

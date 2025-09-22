@@ -18,11 +18,11 @@ const AddUserForm = () => {
     const [franchiseeInput, setFranchiseeInput] = useState("")
 
     const availableRoles = [
-        { id: 1, name: 'director' },
-        { id: 2, name: 'admin' },
-        { id: 3, name: 'superAdmin' },
-        { id: 4, name: 'employee' },
-        { id: 5, name: 'manager' }
+        { id: 6, name: 'Director' },
+        { id: 7, name: 'Admin' },
+        { id: 8, name: 'Super Admin' },
+        { id: 9, name: 'Employee' },
+        { id: 10, name: 'Manager' }
     ]
 
     const availablePermissions = ["Dashboard", "Projects", "Reports", "Management", "Billing", "Admin"]
