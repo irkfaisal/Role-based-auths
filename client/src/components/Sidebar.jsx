@@ -11,11 +11,6 @@ function Sidebar({ sidebarData }) {
                         <NavLink to={`${item.page.path}`}>{item.page.name}</NavLink>
                     </li>
                 ))}
-                {/* <li><NavLink to="/admin">Admin</NavLink></li>
-                <li><NavLink to="/user">User</NavLink></li>
-                <li><NavLink to="/role">Roles</NavLink></li>
-                <li><NavLink to="/conetnt">Content</NavLink></li>
-                <li>Settings</li> */}
             </ul>
         </div>
     );
